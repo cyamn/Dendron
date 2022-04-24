@@ -1,0 +1,83 @@
+
+\documentclass[a4paper]{article}
+\usepackage[landscape]{geometry}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{amsmath,amssymb}
+\usepackage{fourier}
+
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{circuitikz}
+\makeatletter
+
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\newcommand{\rsh}{\rotatebox[origin=c]{180}{$\Lsh$}}
+\makeatother
+
+\title{ITE Cheat Sheet}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+\advance\topmargin-.8in
+\advance\textheight3in
+\advance\textwidth3in
+\advance\oddsidemargin-1.5in
+\advance\evensidemargin-1.5in
+\parindent0pt
+\parskip2pt
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+\begin{document}
+
+\begin{center}{\huge{\textbf{CS:Technical::Electrical}}}\\
+\end{center}
+\begin{multicols*}{3}
+
+\tikzstyle{mybox} = [draw=black, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
+
+%------------ Prefixes ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+      \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{symbol} & \textbf{name}  & \textbf{factor}           \\
+        \hline
+        $T$    & tera  & $\cdot 10^{12}$  \\
+        $G$    & giga  & $\cdot 10^{9}$   \\
+        $M$    & mega  & $\cdot 10^{6}$   \\
+        $k$    & kilo  & $\cdot 10^{3}$   \\
+        \hline
+               & 1     & $\cdot 10^{0}$   \\
+        \hline
+        $m$    & milli & $\cdot 10^{-3}$  \\
+        $\mu$  & mikro & $\cdot 10^{-6}$  \\
+        $n$    & nano  & $\cdot 10^{-9}$  \\
+        $p$    & piko  & $\cdot 10^{-12}$ \\
+        $f$    & femto & $\cdot 10^{-15}$ \\
+        $a$    & atto  & $\cdot 10^{-18}$ \\
+        \hline
+        \end{tabular}
+    \end{minipage}
+};
+%------------ Prefixes Header ---------------------
+\node[fancytitle, right=10pt] at (box.north west) {Unit prefixes};
+\end{tikzpicture}
+
+
+
+
+\end{multicols*}
+\end{document}

@@ -1,0 +1,20 @@
+{
+  "name": "",
+  "isOrdered": true,
+  "folders": {
+    "assets": {
+      "name": "assets",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    }
+  },
+  "files": {
+    "cs.technical.electrical": 0,
+    "cs": 1,
+    "cs.technical.encodings": 2,
+    "cs.technical": 3,
+    "cs.technical.numbersystems": 4,
+    "root": 5
+  }
+}

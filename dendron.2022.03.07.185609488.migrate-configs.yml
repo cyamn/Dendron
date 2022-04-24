@@ -1,6 +1,27 @@
-version: 5
+version: 4
+useFMTitle: true
+useNoteTitleForLink: true
+mermaid: true
+useKatex: true
 dev:
     enablePreviewV2: true
+site:
+    # assetsPrefix: /dendron
+    # siteUrl: https://cyamn.github.io
+    siteUrl: http://localhost:3000
+    copyAssets: true
+    siteHierarchies:
+        - root
+    siteRootDir: docs
+    usePrettyRefs: true
+    title: Dendron
+    description: Personal knowledge space
+    siteLastModified: true
+    gh_edit_branch: main
+    duplicateNoteBehavior:
+        action: useVault
+        payload:
+            - vault
 commands:
     lookup:
         note:
@@ -18,7 +39,6 @@ commands:
         enableMultiSelect: false
     insertNoteIndex:
         enableMarker: false
-    copyNoteLink: {}
 workspace:
     vaults:
         -
@@ -33,9 +53,9 @@ workspace:
         dateFormat: y.MM.dd.HHmmss
         addBehavior: asOwnDomain
     task:
-        name: task
-        dateFormat: yyyy.MM.dd
-        addBehavior: asOwnDomain
+        name: ''
+        dateFormat: ''
+        addBehavior: childOfCurrent
         statusSymbols:
             '': ' '
             wip: w
@@ -50,7 +70,7 @@ workspace:
             H: high
             M: medium
             L: low
-        todoIntegration: true
+        todoIntegration: false
         createTaskSelectionType: selection2link
     graph:
         zoomSpeed: 1
@@ -64,8 +84,6 @@ workspace:
     enableEditorDecorations: true
     maxPreviewsCached: 10
     maxNoteLength: 204800
-    dendronVersion: 0.91.0
-    enableFullHierarchyNoteTitle: false
 preview:
     enableFMTitle: true
     enableNoteTitleForLink: true
@@ -73,34 +91,3 @@ preview:
     enablePrettyRefs: true
     enableKatex: true
     automaticallyShowPreview: false
-    enableFrontmatterTags: true
-    enableHashesForFMTags: false
-publishing:
-    enableFMTitle: true
-    enableNoteTitleForLink: true
-    enableMermaid: true
-    enablePrettyRefs: true
-    enableKatex: true
-    copyAssets: true
-    siteHierarchies:
-        - root
-    enableSiteLastModified: true
-    siteRootDir: docs
-    siteUrl: http://localhost:3000
-    enableFrontmatterTags: true
-    enableHashesForFMTags: false
-    enableRandomlyColoredTags: true
-    duplicateNoteBehavior:
-        action: useVault
-        payload:
-            - vault
-    writeStubs: false
-    seo:
-        title: Dendron
-        description: Personal knowledge space
-    github:
-        enableEditLink: true
-        editLinkText: Edit this page on GitHub
-        editBranch: main
-        editViewMode: tree
-    enablePrettyLinks: true

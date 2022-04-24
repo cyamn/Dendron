@@ -2,10 +2,11 @@
 id: 65gwsEo01LciOGw1vZhrt
 title: Numbersystems
 desc: ''
-updated: 1644014592486
+updated: 1644167625963
 created: 1643905768404
 ---
 
+🚧 this section is not complete
 ## Intro
 * Humans: usually calculate in the decimal system
 * Computers: usually calculate in theㅤ binary (number) system
@@ -64,16 +65,6 @@ created: 1643905768404
   * $x=\sum_{i=-m}^k b_iB^i = \sum_{i=0}^k b_iB^i + \sum_{i=-m}^{-1} b_iB^i$
   * $x = (b_k b_{k-1}...b_1,b_0,b_{-1},...,b_{-m})_B$
 
----
-
-## Horner Scheme
-* The Horner Scheme can be used ㅤto convert between number systems
-* The Horner Scheme arises from ㅤcontinued factoring out
-* Horner for natural numbers:
-  * $n= \sum_{i=0}^k b_iB^i = ((...(b_k\cdot B+b_{k-1})\newline\cdot B+...+b_2)\cdot B+b_1)\cdot B+b_0$
-* Horner for fractional portion:
-  * $n= \sum_{i=-m}^{-1} b_iB^i = ((...(b_{-m}/ B+b_{-m+1})\newline/ B+...+b_{-2})/ B+b_{-1})/ B$
-
 <!-- ## Conversion between number systems -->
 
 ---
@@ -102,6 +93,66 @@ created: 1643905768404
 
 ---
 
-## Horner-Scheme usage
+## Horner Scheme
+* The Horner Scheme can be used ㅤto convert between number systems
+* The Horner Scheme arises from ㅤcontinued factoring out
+* Horner for natural numbers:
+  * $n= \sum_{i=0}^k b_iB^i = ((...(b_k\cdot B+b_{k-1})\newline\cdot B+...+b_2)\cdot B+b_1)\cdot B+b_0$
+* Horner for fractional portion:
+  * $n= \sum_{i=-m}^{-1} b_iB^i = ((...(b_{-m}/ B+b_{-m+1})\newline/ B+...+b_{-2})/ B+b_{-1})/ B$
+* Horner Scheme procedure (for $n\in\N$)
+  * Calculating in the original system (decimal system)
+  * Successive division of the given decimal by the base $B$
+  * the remainders result in the digits of the number $n_B$ from least to most significant
 
-<!-- TODO -->
+--
+
+* example: $15741_{10}$ to Hexadecimal
+
+  | $n$                 | $r$  | $b_i$    |
+  |---------------------|------|----------|
+  | $15741_{10}/16=983$ | $13$ | $D_{16}$ |
+  | $983_{10}/16=61$    | $7$  | $7_{16}$ |
+  | $61_{10}/16=3$      | $13$ | $D_{16}$ |
+  | $3_{10}/16=0$       | $3$  | $3_{16}$ |
+
+  $\Longrightarrow 15741_{10} = 3D7D_{16}$
+
+--
+
+* example: $122_{10}$ to binary
+
+  | $n$             | $r$ | $b_i$ |
+  |-----------------|-----|-------|
+  | $122_{10}/2=61$ | $0$ | $0_2$ |
+  | $61_{10}/2=30$  | $1$ | $1_2$ |
+  | $30_{10}/2=15$  | $0$ | $0_2$ |
+  | $15_{10}/2=7$   | $1$ | $1_2$ |
+  | $7_{10}/2=3$   | $1$ | $1_2$ |
+  | $3_{10}/2=1$   | $1$ | $1_2$ |
+  | $1_{10}/2=7$   | $1$ | $1_2$ |
+  $\Longrightarrow 122_{10} = 1111010_2$
+
+<!-- ## Horner-Scheme for fraction -->
+
+## Conversion: base $B \rightarrow$ base $B'$
+
+* to transform from base $B$ to decimal ㅤwe just evaluate its [[sum representation|cs.technical.numbersystems.md#numbersystem]]
+* example: $101101.1101_2$ to decimal:<br>
+  $\left.\begin{aligned}
+    \;\;\;\;1&\cdot 2^5 &&= 32 \\
+    0&\cdot 2^4 &&= 0 \\
+    1&\cdot 2^3 &&= 8 \\
+    1&\cdot 2^2 &&= 4 \\
+    0&\cdot 2^1 &&= 0 \\
+    1&\cdot 2^0 &&= 1 \\
+    1&\cdot 2^{-1} &&= 0.5 \\
+    1&\cdot 2^{-2} &&= 0.25 \\
+    0&\cdot 2^{-3} &&= 0 \\
+    0&\cdot 2^{-4} &&= 0.0625 \\
+  \end{aligned}\right\} \Longrightarrow 101101.1101_2 = 45,8125_{10}$
+
+* to transform from any base $B$ to another $B'$:
+  * first transform to decimal
+  * then transform to $B'$ using Horner or Euclidean
+  * special case $B'=B^n$ e.g. Binary $\rightarrow$ Hexadecimal (blockwise direct)
