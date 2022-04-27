@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/cyamn/Dendron#readme",
   "dependencies": {
-    "@dendronhq/dendron-cli": "^0.80.0"
+    "@dendronhq/dendron-cli": "^0.80.0",
+    "npx": "^10.2.2"
   }
 }

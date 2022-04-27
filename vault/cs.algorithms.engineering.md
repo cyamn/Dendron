@@ -2,7 +2,7 @@
 id: wfyiyr927x68u3t038reat6
 title: Engineering
 desc: ''
-updated: 1650895426718
+updated: 1651053967217
 created: 1650888547181
 ---
 
@@ -61,6 +61,8 @@ $G=(V,E), V=\{0,...,n-1\}$ vertex set
 - extend $c,w$ to sets: $V'\subset V \cdot c(V') := \sum_{v\in V'} c(u)$
 - extend $c,w$ to sets: $E'\subset E \cdot w(E') := \sum_{e\in E'} w(e)$
 
+![graph](/assets/svg/cs.algoritms.graph.svg)
+
 #### Neighborhood and degree of a node
 
 For $v\in V$ the set $N(v) := \{u| \{v,u\}\in E \}$ denotes the neighborhood of $v$
@@ -72,12 +74,38 @@ For $v\in V$ the set $N(v) := \{u| \{v,u\}\in E \}$ denotes the neighborhood of 
 
 $H'=(V',E')$ subgraph of $G=(V,E)$ if $H'$ constitutes a graph and $V' \subseteq V, E' \subseteq E$
 
-- Subgraph is node induced if...
-- TODO fill missing
-- The connected component of graph $G$ are all maximal subgraphs $H_i$ of $G$ which are connected
-- A partition $\mathbb{P}$ or $ \Phi$ of a graph $G$ is a set of blocks (subset) $V_i \subseteq v (i\in \{1,...,k\}) s.t.$
-  1. $V = \bigcup_$
-- TODO: fill
+- Subgraph is node induced if $E':=\{\{u,v\}|u,v\in V', \{u,v\}\in E\}$
+- In case the subgraph is node induced, we write $G[V']$
+- The connected component of grap h $G$ are all maximal subgraphs $H_i$ of $G$ which are connected
+
+![graph](/assets/svg/cs.algoritms.subGraph.svg)
+
+#### Partitioning
+
+A partition $\mathbb{P}$ or $\delta$ of a graph $G$ is a set of blocks (subset) $V_i \subseteq v (i\in \{1,...,k\}) s.t.$
+
+1. $V = \bigcup_l V_l$ (add up)
+2. $\forall l: V_l \neq \emptyset$ (non-emtpy)
+3. $\forall k \neq i: V_i \cap V_k = \emptyset$ (disjoint)
+
+![graph partitioning](/assets/svg/graphpartitioning.svg)
+
+If $k=2$ we also use the term cut and write $(V_1, V_2 := V\backslash V_1)$
+
+#### Cut sets and sizes
+
+- For $A,B \subseteq V, A\cap B=\emptyset$ the set of cut edges is defined as $E(A,B):=\{\{u,v\} \in E | u\in A, v\in B\}$
+- The cut size is defined as $w(\mathbb{P}) := \bar{m}(\mathbb{P}) := \sum_{i<j}^{} w(E_{i,j})$, $E_{i,j}:= E(v_i, v_j)$
+- The number of coverd edges is defined as $m(\mathbb{P}):= w(E) - \bar{m}(\mathbb{P})$
+
+#### Quotient Graph
+
+An abstract view of the partitioned graph is the quotient graph where nodes represent blocks and edges are induced by connectivity between the blocks.
+
+- $Q=(\{1,...,k\}=V_Q, E_Q)$
+- $\{i,j\}\in E_Q :\Leftrightarrow \exists \{u,v\}\in E: u\in U_i, v\in U_j$
+- $c_Q: V_Q \rightarrow \R_{>0}, i\rightarrow c(V_i)$
+- $w_Q: E_Q \rightarrow \R_{>0}, \{i,j\} \rightarrow w(E_{i,j})$
 
 ## Partitioning / Process Mapping:
 
