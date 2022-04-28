@@ -2,7 +2,7 @@
 id: 1bh0ch0ldmv5nfenl0yp3pc
 title: Randomized Algorithms
 desc: ''
-updated: 1651142029428
+updated: 1651154942079
 created: 1650868599256
 ---
 
@@ -83,13 +83,14 @@ TODO
 
 <!-- ## Motivation -->
 
-## The tenure game
-
-### Definition
+## Algorithms where randomness is helpfull
+### The tenure game
 
 Initial configuration of the tenure game:
 
 - finitely many tokens $1,...,m$ are placed at positions $d_1,...,d_m$ where $d_i$ are arbitrary nonezero numbers
+
+#### Rules
 
 A single round of the tenure game
 
@@ -100,5 +101,36 @@ A single round of the tenure game
    - The tokens in $I_{1-r}$ are moved one step closer to position $0$
    - Tokens that where already at position $0$ just stay there.
 
-### Winning condition
+Terminates when: each token has either been removed or reached position $0$:
 
+- $\exists$ token at position $0\Rightarrow$ Bob wins
+- $\nexists$ token at position $0\Rightarrow$ Alice wins
+
+#### Problem
+
+Since this is a finite two-person zero-sum game [[gametheory | econ.gametheo]] states that there must exist a winning strategy for Alice or Bob exclusively and thus yields the following question:
+
+- Given an initial configuration of the tenure game, who has a winning strategy, Alice or Bob?
+- how does the winning strategy look like?
+
+#### Trick
+
+The question gets much easier if we assume that Alice plays randomly. E.g. Alice determines the bit $r$ by tossing a fair coin.
+
+- In every round, by Alice randomly selecting one of the two parts, any single token will be removed or promoted with equal probabilities of $\frac{1}{2}$.
+- Since the coin tosses are independent, a token that is initially at
+position $d$ will reach position $0$ with probabilty $(\frac{1}{2})^d=\frac{1}{2^d}$.
+
+## Derandomization techniques
+
+### Algorithm cut
+
+Used to find a [[cut|cs.algorithms.engineering#cut-sets-and-sizes]]
+
+Input: A graph $G=(V,E)$ where $V=\{1,...,n\}$.
+
+- Choose random bits $r_1,...,r_n$ by independent tosses of a fair coin,
+- Let $V_0 = \{i:r_i=0\}$.
+- Let $V_1 = \{i:r_i=1\}$.
+
+Output: The cut $(V_0,V_1)$

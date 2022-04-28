@@ -2,7 +2,7 @@
 id: wfyiyr927x68u3t038reat6
 title: Engineering
 desc: ''
-updated: 1651075717175
+updated: 1651149310045
 created: 1650888547181
 ---
 
@@ -93,6 +93,7 @@ If $k=2$ we also use the term cut and write $(V_1, V_2 := V\backslash V_1)$
 ### Cut sets and sizes
 
 - For $A,B \subseteq V, A\cap B=\emptyset$ the set of cut edges is defined as $E(A,B):=\{\{u,v\} \in E | u\in A, v\in B\}$
+- The weight of the cut is $|E(A,B)|$
 - The cut size is defined as $w(\mathbb{P}) := \bar{m}(\mathbb{P}) := \sum_{i<j}^{} w(E_{i,j})$, $E_{i,j}:= E(v_i, v_j)$
 - The number of coverd edges is defined as $m(\mathbb{P}):= w(E) - \bar{m}(\mathbb{P})$
 
