@@ -2,7 +2,7 @@
 id: wfyiyr927x68u3t038reat6
 title: Engineering
 desc: ''
-updated: 1651053967217
+updated: 1651075717175
 created: 1650888547181
 ---
 
@@ -46,11 +46,9 @@ created: 1650888547181
 - 1997 Term used in US policy paper [Aho, Johnson, Karp, et. al]
 - 1998 Alex workshop in Italy ; ALENEX
 
-## Notation
+## General Definitions
 
-### General Definitions
-
-#### Graph
+### Graph
 
 $G=(V,E), V=\{0,...,n-1\}$ vertex set
 - $E\subset V\times V$ edge set, sometimes multiset
@@ -63,14 +61,14 @@ $G=(V,E), V=\{0,...,n-1\}$ vertex set
 
 ![graph](/assets/svg/cs.algoritms.graph.svg)
 
-#### Neighborhood and degree of a node
+### Neighborhood and degree of a node
 
 For $v\in V$ the set $N(v) := \{u| \{v,u\}\in E \}$ denotes the neighborhood of $v$
 
 - $deg(v) :=  |N(v)|$
 - with $\Delta := max_{v\in V} deg(v)$ we denote the max. degree
 
-#### Subgraph
+### Subgraph
 
 $H'=(V',E')$ subgraph of $G=(V,E)$ if $H'$ constitutes a graph and $V' \subseteq V, E' \subseteq E$
 
@@ -80,7 +78,7 @@ $H'=(V',E')$ subgraph of $G=(V,E)$ if $H'$ constitutes a graph and $V' \subseteq
 
 ![graph](/assets/svg/cs.algoritms.subGraph.svg)
 
-#### Partitioning
+### Partitioning
 
 A partition $\mathbb{P}$ or $\delta$ of a graph $G$ is a set of blocks (subset) $V_i \subseteq v (i\in \{1,...,k\}) s.t.$
 
@@ -92,13 +90,14 @@ A partition $\mathbb{P}$ or $\delta$ of a graph $G$ is a set of blocks (subset) 
 
 If $k=2$ we also use the term cut and write $(V_1, V_2 := V\backslash V_1)$
 
-#### Cut sets and sizes
+### Cut sets and sizes
 
 - For $A,B \subseteq V, A\cap B=\emptyset$ the set of cut edges is defined as $E(A,B):=\{\{u,v\} \in E | u\in A, v\in B\}$
 - The cut size is defined as $w(\mathbb{P}) := \bar{m}(\mathbb{P}) := \sum_{i<j}^{} w(E_{i,j})$, $E_{i,j}:= E(v_i, v_j)$
 - The number of coverd edges is defined as $m(\mathbb{P}):= w(E) - \bar{m}(\mathbb{P})$
 
-#### Quotient Graph
+![cuts](/assets/excalidraw/cs.algorithms.engineering.cuts.excalidraw.svg)
+### Quotient Graph
 
 An abstract view of the partitioned graph is the quotient graph where nodes represent blocks and edges are induced by connectivity between the blocks.
 

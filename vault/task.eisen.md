@@ -2,7 +2,7 @@
 id: gf742doe5fxcqq4bofzci67
 title: Eisen
 desc: ''
-updated: 1650476014811
+updated: 1651068411927
 created: 1650475853379
 ---
 
@@ -11,7 +11,6 @@ created: 1650475853379
 tasks to do now:
 
 ## Urgent and unimportant
-
 tasks to schedule for later:
 
 ## Not Urgent but important

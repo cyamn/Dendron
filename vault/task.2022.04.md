@@ -2,7 +2,7 @@
 id: 7v8cutdrj4d33p07zatppw9
 title: '04'
 desc: ''
-updated: 1650833725468
+updated: 1651072697523
 created: 1650476235212
 status: ''
 due: ''
@@ -11,7 +11,7 @@ owner: ''
 TODO: '04'
 ---
 
-## Urgent and important
+## Urgent and importantcs.algorithms.engineering.done editingaborted
 
 tasks to do now:
 
