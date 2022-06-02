@@ -2,7 +2,7 @@
 id: wfyiyr927x68u3t038reat6
 title: Engineering
 desc: ''
-updated: 1651149310045
+updated: 1651660199251
 created: 1650888547181
 ---
 
@@ -113,8 +113,7 @@ An abstract view of the partitioned graph is the quotient graph where nodes repr
 
 ## Dynamic Clustering, Online Algorithms
 
-## FPT/Kernelization
 
 ## Route planning
 
-## Dynamic graph algorihtms
+## Dynamic graph algorithms
