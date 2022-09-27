@@ -2,135 +2,101 @@
 id: 1bh0ch0ldmv5nfenl0yp3pc
 title: Randomized Algorithms
 desc: ''
-updated: 1651154942079
+updated: 1662195099039
 created: 1650868599256
 ---
 
-## Examples
+## Randomized Algorithm for Half Duplex Communication
 
-### Example 1: Half-dublex Channel
+Can detect if both send but only read if one side is sending:
 
-Consider two network nodes A and B connected to a channel that can transfer data in both directions but only one direction at a time.
+* only one side sends at a time
+* if both sides starts sending at the same time, both stop, wait a **random** time and start again
 
-In case A and B are sending at the same time they will recognize, that the other node sends too, but they will not get information about the data send by the other side.
+---
 
-In order to avoid a deadlock due to A and B sending repeatedly at the same time, one may use a protocol where:
+## How does randomization help with Half Duplex Communication?
 
-- if one side is sending, the other side will never start sending,
-- if both sides send at the same time, both stop, wait a random amount of time and then start sending again (while obeying Rule a).
+If both sides would behave determinsticly, then the they would start sending at the same time always.
+Thus by making the Algorithm undeterminstic, e.g. by waiting a random amount of time
+both Algorithms get out of sync and thus don't end in a deadlock.
 
-### Example 2: Randomized Quicksort
+---
 
-During the recursive calls of the Quicksort algorithm a pivot must be chosen. The pivot is used to split the list into tree lists (smaller, equal, greater).
-Consider two ways of finding a pivot:
+## Randomized Quicksort
 
-- deterministic Quicksort: choose pivot element deterministically, e.g., the first element, median, first, last, middle element.
-- randomized Quicksort: choose pivot element
-uniformly at random from all elements in the current list.
+The core idea of Quicksort is to split the array into two parts, one part is smaller than the pivot and the other part is larger than the pivot, then recursing those two lists.
+The pivot in this version of Quicksort is chosen randomly instead of determinsticly.
 
-For both variants there are cases where the chosen pivots are bad (in a sense that the tree parts degenerate).
-In worst case the number of comparisons required for sorting a list with n elements goes up to roughly $n^2$ instead of the average number $O(n log n)$.
-- With deterministic Quicksort, there are rare bad inputs that always result in a bad choice of the pivot elements.
-- With randomized Quicksort, all inputs are equally good, however, for any given input with small probability the random choices of the algorithm may result in a bad choice of the pivot elements.
+---
 
-### Example 3: The copy game
+## How does randomization help with Quicksort?
 
-At the beginning of each round, two players A and B commit secretly to a value $x_A$
-and $x_B$ , respectively, from $\{0, 1\}$.
-Player $A$ wins if the two values are distinct.
-Player $B$ wins if both values are the same.
+W.l.o.g say we always pick the first element as the pivot (thus deterministicly).
+There are certain configurations where deterministic Quicksort is very slow, e.g. if the array is already sorted.
+Then the tree degenerates and needs O(n^2) instead of the average O(n log n) time.
+Randomized Quicksort avoids this by choosing a random pivot. Now the worst case is still O(n^2)
+but is independent from the input.
 
-In certain game-theoretical situations, the ability to pursue a randomized strategy makes a big difference:
+---
 
-- if player $A$ follows a deterministic strategy $\rightarrow$ player $B$ can simulate $A$ and thus make $A$ always loose
-- if player $A$ follows random strategy $\rightarrow$ player $B$ cannot simulate anything $\rightarrow A$ wins exactly half of the rounds
+## The copy game
 
-<!-- TODO: move this -->
-### Excurs on the parity function
+At the beginning of the game player A and B secretly commit to a value in {0,1}.
+If both players commit to distinct values, player A wins. Otherwise player B wins.
 
-An $n$-ary Boolean function is a function $\{0,1\}^n\rightarrow\{0,1\}$, where 0 means false and 1 means true.
+---
 
-The $n$-ary function $\oplus_n$ is the Boolean function on $n$ arguments that yields 1 exactly when an odd number of the arguments is equal to 1.
+## How does randomization help with the copy game?
 
-The $2$-ary parity function $\oplus_2$, which we also denote by $\oplus_2$, is just the Exclusive-Or function (XOR function, for short), i.e.,
-$$
-a\oplus b =
-\begin{cases}
-1 \text{ if $a$ and $b$ are distinct}, \\
-0 \text{ otherwise.}
-\end{cases}
-$$
+If player A would choose the value deterministicly, then player B could copy (learn) this strategy and always win.
+But if player A chooses his value by a random coin flip, then player B can't learn the strategy and thus can't always win.
+The latter holds no matter how dumb Player A and how smart or computationally powerful Player B is.
 
-The binary parity function is associative:
-$(a_1\oplus a_2)\oplus(a_1\oplus(a_3\oplus a_1)) = \oplus_5(a_1,a_2,a_1,a_3,a_1)$
+---
 
-### Example 4: One-time pad
+## What does the copy game show us?
 
-- Consider $A$ wanting to send $B$ a secret binary. word $w=w_1...w_n,\; w_i\in\{0,1\}$.
-- Suppose both know an otherwise secret random word $r=r_1...r_n$.
-- Then $A$ can simply send the word $w\oplus r=(w_1\oplus r_1)...(w_n\oplus r_n)$
-- Now $B$ can decode the word in the same way e.g:
-  $$
-  w\oplus r\oplus r=(w_1\oplus r_1\oplus r_1)...(w_n\oplus r_n\oplus r_n)= (w_1\oplus 0)...(w_n\oplus 0) = w_1...w_n = w$$
-- Note that we can only use the secret word $r$ once as we otherwise could tell wether two encoded words $w, v$ are the same:
-  $$
-  (w\oplus r) \oplus (v\oplus r) = w\oplus v \oplus r\oplus r= w\oplus v
-  $$
+In certain game-theoretical situations, the ability to pursue a randomized strategy makes a big difference.
 
-### Example 5: Dining cryptographers
+---
+## Binary Parity function
 
-TODO
+The binary parity function is a function that takes a binary string and returns 1 if the number of 1s is odd and 0 otherwise.
+The 2-ary parity function is the XOR function e.g.
+$a\oplus b = \begin{cases}
+ 1&\text{if a and b are the distinct}\\
+ 0&\text{otherwhise.}\\
+\end{cases}$
 
-<!-- ## Motivation -->
+The binary parity function is associative, e.g. $(a_1\oplus a_2) \oplus (a_1\oplus (a_3\oplus a_1)) = \oplus_5(a_1,a_2,a_1,a_3,a_1)$
 
-## Algorithms where randomness is helpfull
-### The tenure game
+---
 
-Initial configuration of the tenure game:
+## One-time pad
 
-- finitely many tokens $1,...,m$ are placed at positions $d_1,...,d_m$ where $d_i$ are arbitrary nonezero numbers
+The one-time pad is a symmetric encryption scheme that uses a random key. The key is as long as the message. The encryption is done by XORing the message with the key.
 
-#### Rules
+$w_{decrypted} = w_{encrypeted}\oplus r$
 
-A single round of the tenure game
+---
 
-1. **Partition**: Bob partitions the current set $I$ of tokens that are not at position $0$ into two sets $I_0$ and $I_1$ (i.e. $I$ is the disjoint union of $I_0$ and $I_1$).
-2. **Selection**: Alice determines a bit $r$
-3. **Removal and promotion**:
-   - The tokens in $I_r$ are removed.
-   - The tokens in $I_{1-r}$ are moved one step closer to position $0$
-   - Tokens that where already at position $0$ just stay there.
+## Why is "One-time pad" called "One-time pad"?
 
-Terminates when: each token has either been removed or reached position $0$:
+The key is used only once. If the key is used twice, then the encryption is broken:
 
-- $\exists$ token at position $0\Rightarrow$ Bob wins
-- $\nexists$ token at position $0\Rightarrow$ Alice wins
+$w_0\oplus w_1=(w_0\oplus r)\oplus (w_1\oplus r)$
 
-#### Problem
+hence one can compute $w_0\oplus w_1$.
 
-Since this is a finite two-person zero-sum game [[gametheory | econ.gametheo]] states that there must exist a winning strategy for Alice or Bob exclusively and thus yields the following question:
+---
 
-- Given an initial configuration of the tenure game, who has a winning strategy, Alice or Bob?
-- how does the winning strategy look like?
+## Dining Cryptographers
 
-#### Trick
+Three cryptographers A,B,C go dining when they find, that their bill was already paid for. So they come up with a protocol that tells them whether one of them paid the bill without revealing who did so:
 
-The question gets much easier if we assume that Alice plays randomly. E.g. Alice determines the bit $r$ by tossing a fair coin.
-
-- In every round, by Alice randomly selecting one of the two parts, any single token will be removed or promoted with equal probabilities of $\frac{1}{2}$.
-- Since the coin tosses are independent, a token that is initially at
-position $d$ will reach position $0$ with probabilty $(\frac{1}{2})^d=\frac{1}{2^d}$.
-
-## Derandomization techniques
-
-### Algorithm cut
-
-Used to find a [[cut|cs.algorithms.engineering#cut-sets-and-sizes]]
-
-Input: A graph $G=(V,E)$ where $V=\{1,...,n\}$.
-
-- Choose random bits $r_1,...,r_n$ by independent tosses of a fair coin,
-- Let $V_0 = \{i:r_i=0\}$.
-- Let $V_1 = \{i:r_i=1\}$.
-
-Output: The cut $(V_0,V_1)$
+* Any two of the cryptographers toss a fair coin and obtain a common random bit, which is unknown to the third one. E.g. A and B determine a random bit $r_{A,B}$ unknown to C.
+* For any cryptographer X let uX be the parity of the two random bits obtained by X, e.g., let $u_A = r_{A,B} \oplus r_{A,C}$
+* Then any cryptographer X publishes $p_x$ = $u_X$ in case X has not paid, and publishes $p_x$ = the complement of $u_X$, otherwise
+* In case none of the three has paid, we have: $p_A\oplus p_B\oplus p_C = u_A\oplus u_B\oplus u_C = (r_{A,B}\oplus r_{A,C})\oplus(r_{A,B}\oplus r_{B,C})\oplus(r_{A,C}\oplus r_{B,C})$
+* otherwise $p_A\oplus p_B \oplus p_C$ evaluates to 1 because exactly one of the values $p_X$ is equal to the complement of $u_X$
